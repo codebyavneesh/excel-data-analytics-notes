@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Master Notes – Entry-Level Data Analyst Interview</title>
+    <style>
+        /* ===== GLOBAL DARK THEME ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0b1120; /* dark navy */
+            color: #e2e8f0;
+            font-family: 'Segoe UI', 'Inter', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* ===== COVER PAGE ===== */
+        .cover {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border-radius: 24px;
+            margin-bottom: 60px;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .cover h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #22d3ee, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .cover h2 {
+            font-size: 2rem;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+        .cover .badge {
+            display: inline-block;
+            background: #1e293b;
+            border: 1px solid #22d3ee;
+            color: #22d3ee;
+            padding: 8px 24px;
+            border-radius: 999px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #22d3ee;
+            border-bottom: 3px solid #22d3ee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #3b82f6;
+            border-left: 6px solid #3b82f6;
+            padding-left: 16px;
+            margin-top: 2.2em;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #a855f7;
+            margin-top: 1.6em;
+        }
+        h4 {
+            font-size: 1.2rem;
+            color: #4ade80;
+            margin-top: 1.2em;
+        }
+        p, li {
+            color: #cbd5e1;
+            margin-bottom: 0.8em;
+        }
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 1.2em;
+        }
+        li {
+            margin-bottom: 0.4em;
+        }
+        strong {
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+        a {
+            color: #22d3ee;
+            text-decoration: none;
+        }
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            font-size: 0.95rem;
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        th {
+            background: #0f172a;
+            color: #22d3ee;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #334155;
+            color: #cbd5e1;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #1a2332;
+        }
+        /* ===== FORMULA BOX ===== */
+        .formula-box {
+            background: #0f172a;
+            border-left: 6px solid #22d3ee;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 1.2em 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            overflow-x: auto;
+        }
+        .formula-box code {
+            color: #facc15;
+            font-weight: 600;
+        }
+        /* ===== CALLOUT BOXES ===== */
+        .interview-tip, .common-mistake, .business-insight, .remember-box {
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 1.2em 0;
+            border-left: 6px solid;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .interview-tip {
+            background: #1e293b;
+            border-color: #3b82f6;
+        }
+        .interview-tip::before {
+            content: "🎯 Interview Tip: ";
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        .common-mistake {
+            background: #1e293b;
+            border-color: #ef4444;
+        }
+        .common-mistake::before {
+            content: "⚠️ Common Mistake: ";
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .business-insight {
+            background: #1e293b;
+            border-color: #22c55e;
+        }
+        .business-insight::before {
+            content: "📊 Business Insight: ";
+            font-weight: 700;
+            color: #22c55e;
+        }
+        .remember-box {
+            background: #1e293b;
+            border-color: #a855f7;
+        }
+        .remember-box::before {
+            content: "🧠 Remember: ";
+            font-weight: 700;
+            color: #a855f7;
+        }
+        /* ===== MUST KNOW STAR ===== */
+        .must-know {
+            color: #facc15;
+            font-weight: 700;
+        }
+        .must-know::before {
+            content: "⭐ ";
+        }
+        /* ===== TOC ===== */
+        .toc {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 30px 40px;
+            margin: 40px 0;
+            border: 1px solid #334155;
+        }
+        .toc h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+            color: #22d3ee;
+        }
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+            padding-left: 0;
+        }
+        .toc li {
+            counter-increment: toc-counter;
+            padding: 8px 0;
+            border-bottom: 1px solid #334155;
+            font-size: 1.05rem;
+        }
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            color: #22d3ee;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        /* ===== SECTION SEPARATOR ===== */
+        .section-sep {
+            height: 4px;
+            background: linear-gradient(90deg, #22d3ee, #3b82f6, #a855f7, #22c55e);
+            border-radius: 2px;
+            margin: 60px 0 40px 0;
+            opacity: 0.6;
+        }
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: #0b1120 !important;
+                color: #e2e8f0 !important;
+                padding: 20px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cover {
+                box-shadow: none;
+                border: 1px solid #334155;
+            }
+            .formula-box, .interview-tip, .common-mistake, .business-insight, .remember-box, table {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            .section-sep {
+                page-break-before: always;
+            }
+            @page {
+                margin: 1.5cm;
+                size: A4;
+            }
+        }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            body { padding: 20px 16px; }
+            .cover h1 { font-size: 2.5rem; }
+            .cover h2 { font-size: 1.3rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            table { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+    <h1>Excel Master Notes</h1>
+    <h2>Entry-Level Data Analyst Interview Preparation</h2>
+    <div class="badge">⭐ Complete Interview Handbook ⭐</div>
+    <p style="margin-top:40px; color:#94a3b8; font-size:1.1rem;">
+        Concept → Formula → Practical Example → Business Problem → Analysis → Interview Question → Answer → Common Mistake
+    </p>
+    <p style="margin-top:20px; color:#64748b; font-size:0.9rem;">Dark Theme • Premium Design • Interview-Focused</p>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc">
+    <h2>📑 Table of Contents</h2>
+    <ol>
+        <li>Excel Fundamentals for Data Analysts</li>
+        <li>Important Excel Formulas</li>
+        <li>Logical Functions</li>
+        <li>Lookup Functions – VLOOKUP, XLOOKUP, INDEX-MATCH</li>
+        <li>Text Functions</li>
+        <li>Date &amp; Time Functions</li>
+        <li>Data Cleaning in Excel</li>
+        <li>Excel Tables</li>
+        <li>Pivot Tables</li>
+        <li>Pivot Charts &amp; Slicers</li>
+        <li>Conditional Formatting</li>
+        <li>Power Query</li>
+        <li>Advanced / Modern Excel Functions</li>
+        <li>Statistical / Analytical Functions</li>
+        <li>Data Analysis Concepts Using Excel</li>
+        <li>Important Data Analyst Metrics</li>
+        <li>Realistic Data Analyst Case Studies</li>
+        <li>Excel Interview Questions Master Bank</li>
+        <li>Interview Answering Framework</li>
+        <li>Common Excel Mistakes</li>
+        <li>Excel Dashboard Basics</li>
+        <li>Excel vs SQL vs Power BI</li>
+        <li>Last-Day Revision Sheet</li>
+    </ol>
+</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 1. EXCEL FUNDAMENTALS ==================== -->
+<h1>1. Excel Fundamentals for Data Analysts</h1>
+
+<h3>Workbook, Worksheet, Rows, Columns, Cells</h3>
+<ul>
+    <li><strong>Workbook</strong> – The entire Excel file (.xlsx).</li>
+    <li><strong>Worksheet</strong> – A single sheet within a workbook.</li>
+    <li><strong>Rows</strong> – Horizontal (numbered 1, 2, 3…).</li>
+    <li><strong>Columns</strong> – Vertical (lettered A, B, C…).</li>
+    <li><strong>Cell</strong> – Intersection of row &amp; column (e.g., A1).</li>
+</ul>
+<div class="business-insight">Data Analysts work with tabular data – rows are records, columns are fields.</div>
+
+<h3>Relative, Absolute &amp; Mixed References</h3>
+<table>
+    <tr><th>Type</th><th>Example</th><th>Behaviour when copied</th></tr>
+    <tr><td>Relative</td><td>A1</td><td>Both row &amp; column change</td></tr>
+    <tr><td>Absolute</td><td>$A$1</td><td>Neither changes</td></tr>
+    <tr><td>Mixed (row locked)</td><td>A$1</td><td>Column changes, row fixed</td></tr>
+    <tr><td>Mixed (column locked)</td><td>$A1</td><td>Row changes, column fixed</td></tr>
+</table>
+<div class="common-mistake">Forgetting to lock a reference when dragging a formula → wrong results. Always ask: "Should this cell stay the same?"</div>
+<div class="interview-tip">Interviewers often test relative vs absolute by giving a SUMIF formula and asking what happens when dragged.</div>
+
+<h3>Named Ranges</h3>
+<p>Give a cell or range a meaningful name (e.g., <code>SalesData</code>). Use in formulas for readability.</p>
+<div class="formula-box">=SUM(SalesData)</div>
+<div class="interview-tip">Named ranges make formulas easier to audit – mention this in interviews.</div>
+
+<h3>Excel Tables &amp; Structured References</h3>
+<p>Convert a range to a Table (<strong>Ctrl+T</strong>). Benefits: automatic expansion, structured references, calculated columns.</p>
+<div class="formula-box">=SUM(Sales[Revenue])</div>
+<div class="remember-box">Tables auto-fill formulas and keep references intact when new rows are added.</div>
+
+<h3>Sorting, Filtering, Custom Sorting</h3>
+<ul>
+    <li><strong>Sort</strong> – Arrange data ascending/descending.</li>
+    <li><strong>Filter</strong> – Show only rows that meet criteria.</li>
+    <li><strong>Custom Sort</strong> – Sort by multiple levels or custom lists.</li>
+</ul>
+<div class="business-insight">Use sorting to find top customers; filtering to isolate a region.</div>
+
+<h3>Freeze Panes, Find &amp; Replace, Remove Duplicates</h3>
+<ul>
+    <li><strong>Freeze Panes</strong> – Keep headers visible while scrolling.</li>
+    <li><strong>Find &amp; Replace</strong> – Clean inconsistent text (e.g., "NY" → "New York").</li>
+    <li><strong>Remove Duplicates</strong> – Data → Remove Duplicates. Always check before removing!</li>
+</ul>
+<div class="common-mistake">Removing duplicates without checking if they are genuine duplicates or legitimate repeated orders.</div>
+
+<h3>Data Validation &amp; Conditional Formatting</h3>
+<ul>
+    <li><strong>Data Validation</strong> – Restrict input (e.g., dropdown lists, whole numbers).</li>
+    <li><strong>Conditional Formatting</strong> – Highlight cells based on rules.</li>
+</ul>
+<div class="interview-tip">⭐ MUST KNOW: Conditional formatting is heavily used in dashboards. Know how to highlight duplicates, top 10%, and negative values.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 2. IMPORTANT EXCEL FORMULAS ==================== -->
+<h1>2. Important Excel Formulas</h1>
+
+<h3>Basic Aggregation</h3>
+<table>
+    <tr><th>Function</th><th>What it does</th><th>Example</th></tr>
+    <tr><td>SUM</td><td>Adds numbers</td><td>=SUM(A1:A10)</td></tr>
+    <tr><td>AVERAGE</td><td>Arithmetic mean</td><td>=AVERAGE(B1:B10)</td></tr>
+    <tr><td>MIN / MAX</td><td>Smallest / largest</td><td>=MIN(C1:C10)</td></tr>
+    <tr><td>COUNT</td><td>Counts numeric cells</td><td>=COUNT(D1:D10)</td></tr>
+    <tr><td>COUNTA</td><td>Counts non-empty cells</td><td>=COUNTA(E1:E10)</td></tr>
+    <tr><td>COUNTBLANK</td><td>Counts empty cells</td><td>=COUNTBLANK(F1:F10)</td></tr>
+</table>
+<div class="common-mistake">Using COUNT instead of COUNTA for text columns – COUNT only counts numbers.</div>
+
+<h3>Conditional Aggregation</h3>
+<table>
+    <tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+    <tr><td>SUMIF</td><td>Sum with one condition</td><td>=SUMIF(Region,"West",Sales)</td></tr>
+    <tr><td>SUMIFS</td><td>Sum with multiple conditions</td><td>=SUMIFS(Sales,Region,"West",Category,"Tech")</td></tr>
+    <tr><td>COUNTIF</td><td>Count with one condition</td><td>=COUNTIF(Region,"West")</td></tr>
+    <tr><td>COUNTIFS</td><td>Count with multiple conditions</td><td>=COUNTIFS(Region,"West",Sales,">1000")</td></tr>
+    <tr><td>AVERAGEIF</td><td>Average with one condition</td><td>=AVERAGEIF(Category,"Tech",Sales)</td></tr>
+    <tr><td>AVERAGEIFS</td><td>Average with multiple conditions</td><td>=AVERAGEIFS(Sales,Region,"West",Category,"Tech")</td></tr>
+</table>
+<div class="interview-tip">⭐ MUST KNOW: Difference between SUMIF vs SUMIFS – SUMIFS is more flexible and the order of arguments is different (sum_range first).</div>
+<div class="formula-box">
+<strong>SUMIFS syntax:</strong> =SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)
+</div>
+<div class="common-mistake">In SUMIF, the sum_range is last; in SUMIFS, it's first. Mixing them up gives wrong results.</div>
+
+<h3>IF vs IFS</h3>
+<ul>
+    <li><strong>IF</strong> – One condition, two outcomes.</li>
+    <li><strong>IFS</strong> – Multiple conditions, no nesting required.</li>
+</ul>
+<div class="formula-box">=IF(A1>100,"High","Low")<br>=IFS(A1>100,"High", A1>50,"Medium", TRUE,"Low")</div>
+<div class="interview-tip">IFS is cleaner but only available in Excel 2019+. Mention compatibility.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 3. LOGICAL FUNCTIONS ==================== -->
+<h1>3. Logical Functions</h1>
+
+<table>
+    <tr><th>Function</th><th>Use</th><th>Example</th></tr>
+    <tr><td>IF</td><td>Basic conditional</td><td>=IF(Sales>1000,"Good","Bad")</td></tr>
+    <tr><td>IFS</td><td>Multiple conditions</td><td>=IFS(Sales>1000,"A",Sales>500,"B",TRUE,"C")</td></tr>
+    <tr><td>AND</td><td>All conditions true</td><td>=AND(A1>0,B1>0)</td></tr>
+    <tr><td>OR</td><td>Any condition true</td><td>=OR(A1>0,B1>0)</td></tr>
+    <tr><td>NOT</td><td>Reverses logic</td><td>=NOT(A1>0)</td></tr>
+    <tr><td>IFERROR</td><td>Handle any error</td><td>=IFERROR(VLOOKUP(...),"Not Found")</td></tr>
+    <tr><td>IFNA</td><td>Handle #N/A only</td><td>=IFNA(VLOOKUP(...),"Missing")</td></tr>
+</table>
+
+<h3>Nested IF – When to use / avoid</h3>
+<p>Nested IFs become hard to read. Use IFS or a lookup table instead when possible.</p>
+<div class="common-mistake">Deeply nested IFs (5+ levels) → high error rate. Switch to IFS or XLOOKUP with approximate match.</div>
+
+<h3>Customer Segmentation Example</h3>
+<div class="formula-box">=IF(Sales>=10000,"Platinum", IF(Sales>=5000,"Gold", IF(Sales>=1000,"Silver","Bronze")))</div>
+<div class="business-insight">Segmentation helps marketing target customers effectively.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 4. LOOKUP FUNCTIONS ==================== -->
+<h1>4. Lookup Functions – ⭐ VERY IMPORTANT</h1>
+
+<h3>VLOOKUP</h3>
+<div class="formula-box">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</div>
+<ul>
+    <li>Exact match: <code>FALSE</code> or <code>0</code></li>
+    <li>Approximate: <code>TRUE</code> or <code>1</code> (requires sorted data)</li>
+</ul>
+<div class="common-mistake">Forgetting the last argument → defaults to approximate match → wrong results.</div>
+
+<h3>HLOOKUP</h3>
+<p>Same as VLOOKUP but searches horizontally across rows.</p>
+
+<h3>XLOOKUP</h3>
+<div class="formula-box">=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</div>
+<div class="interview-tip">⭐ MUST KNOW: XLOOKUP is preferred over VLOOKUP because it can look left, has built-in if_not_found, and defaults to exact match.</div>
+
+<h3>INDEX + MATCH</h3>
+<div class="formula-box">=INDEX(return_range, MATCH(lookup_value, lookup_range, 0))</div>
+<p>More flexible than VLOOKUP – can look left and right.</p>
+
+<h3>MATCH &amp; XMATCH</h3>
+<div class="formula-box">=MATCH(lookup_value, lookup_array, [match_type])<br>=XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])</div>
+
+<h3>Comparison Table</h3>
+<table>
+    <tr><th>Feature</th><th>VLOOKUP</th><th>XLOOKUP</th><th>INDEX-MATCH</th></tr>
+    <tr><td>Look left</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Default exact match</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Built-in if_not_found</td><td>❌</td><td>✅</td><td>❌</td></tr>
+    <tr><td>Insert column safe</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Performance</td><td>Slow</td><td>Fast</td><td>Fast</td></tr>
+</table>
+
+<h3>Realistic Example</h3>
+<p>Table 1: Customer_ID | Customer_Name | Region | Sales</p>
+<p>Table 2: Customer_ID | Order_Date | Amount</p>
+<div class="formula-box">=XLOOKUP(A2, Customers[Customer_ID], Customers[Customer_Name], "Not Found")</div>
+<div class="interview-tip">Common question: "What happens if lookup value is not found?" → VLOOKUP returns #N/A; XLOOKUP can return a custom value.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 5. TEXT FUNCTIONS ==================== -->
+<h1>5. Text Functions</h1>
+<table>
+    <tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+    <tr><td>LEFT</td><td>Extract from left</td><td>=LEFT(A1,3)</td></tr>
+    <tr><td>RIGHT</td><td>Extract from right</td><td>=RIGHT(A1,4)</td></tr>
+    <tr><td>MID</td><td>Extract from middle</td><td>=MID(A1,3,5)</td></tr>
+    <tr><td>LEN</td><td>Length of text</td><td>=LEN(A1)</td></tr>
+    <tr><td>TRIM</td><td>Remove extra spaces</td><td>=TRIM(A1)</td></tr>
+    <tr><td>CLEAN</td><td>Remove non-printable chars</td><td>=CLEAN(A1)</td></tr>
+    <tr><td>UPPER/LOWER/PROPER</td><td>Change case</td><td>=UPPER(A1)</td></tr>
+    <tr><td>CONCAT / TEXTJOIN</td><td>Join text</td><td>=TEXTJOIN(", ",TRUE,A1:A5)</td></tr>
+    <tr><td>FIND</td><td>Case-sensitive find</td><td>=FIND("a",A1)</td></tr>
+    <tr><td>SEARCH</td><td>Case-insensitive find</td><td>=SEARCH("a",A1)</td></tr>
+    <tr><td>SUBSTITUTE</td><td>Replace text</td><td>=SUBSTITUTE(A1,"old","new")</td></tr>
+    <tr><td>REPLACE</td><td>Replace by position</td><td>=REPLACE(A1,1,3,"XXX")</td></tr>
+    <tr><td>TEXT</td><td>Format number as text</td><td>=TEXT(A1,"0.00%")</td></tr>
+    <tr><td>VALUE / NUMBERVALUE</td><td>Convert text to number</td><td>=VALUE("123")</td></tr>
+</table>
+<div class="interview-tip">FIND is case-sensitive, SEARCH is not. Interviewers love this question.</div>
+<div class="common-mistake">Using TRIM on non-breaking spaces (CHAR(160)) – use SUBSTITUTE(A1,CHAR(160)," ") first.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 6. DATE & TIME FUNCTIONS ==================== -->
+<h1>6. Date &amp; Time Functions</h1>
+<table>
+    <tr><th>Function</th><th>Use</th><th>Example</th></tr>
+    <tr><td>TODAY</td><td>Current date</td><td>=TODAY()</td></tr>
+    <tr><td>NOW</td><td>Current date &amp; time</td><td>=NOW()</td></tr>
+    <tr><td>DATE</td><td>Build a date</td><td>=DATE(2024,1,15)</td></tr>
+    <tr><td>YEAR/MONTH/DAY</td><td>Extract parts</td><td>=YEAR(A1)</td></tr>
+    <tr><td>WEEKDAY</td><td>Day of week (1–7)</td><td>=WEEKDAY(A1)</td></tr>
+    <tr><td>WEEKNUM</td><td>Week number</td><td>=WEEKNUM(A1)</td></tr>
+    <tr><td>EDATE</td><td>Add months</td><td>=EDATE(A1,3)</td></tr>
+    <tr><td>EOMONTH</td><td>End of month</td><td>=EOMONTH(A1,0)</td></tr>
+    <tr><td>DATEDIF</td><td>Difference between dates</td><td>=DATEDIF(A1,B1,"M")</td></tr>
+    <tr><td>NETWORKDAYS</td><td>Working days</td><td>=NETWORKDAYS(A1,B1)</td></tr>
+    <tr><td>WORKDAY</td><td>Add working days</td><td>=WORKDAY(A1,10)</td></tr>
+    <tr><td>YEARFRAC</td><td>Year fraction</td><td>=YEARFRAC(A1,B1)</td></tr>
+</table>
+<div class="business-insight">Extract Quarter: <code>="Q"&amp;ROUNDUP(MONTH(A1)/3,0)</code></div>
+<div class="interview-tip">⭐ MUST KNOW: EOMONTH for month-end analysis, DATEDIF for tenure/age.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 7. DATA CLEANING ==================== -->
+<h1>7. Data Cleaning in Excel – ⭐ VERY IMPORTANT</h1>
+
+<h3>Common Data Issues &amp; Fixes</h3>
+<table>
+    <tr><th>Issue</th><th>Fix</th></tr>
+    <tr><td>Missing values</td><td>Filter blanks, impute or remove</td></tr>
+    <tr><td>Duplicate records</td><td>Remove Duplicates or COUNTIF check</td></tr>
+    <tr><td>Extra spaces</td><td>=TRIM()</td></tr>
+    <tr><td>Inconsistent case</td><td>=PROPER(), =UPPER(), =LOWER()</td></tr>
+    <tr><td>Numbers stored as text</td><td>=VALUE(), Text to Columns, Multiply by 1</td></tr>
+    <tr><td>Invalid dates</td><td>Text to Columns, DATEVALUE</td></tr>
+    <tr><td>Errors (#N/A, #VALUE!)</td><td>IFERROR, IFNA</td></tr>
+</table>
+
+<h3>Step-by-Step Cleaning Process</h3>
+<ol>
+    <li>Understand the dataset (columns, meaning, source).</li>
+    <li>Check data types (numbers, dates, text).</li>
+    <li>Handle missing values (decide: remove, impute, flag).</li>
+    <li>Remove duplicates (verify first).</li>
+    <li>Standardize text (TRIM, PROPER, SUBSTITUTE).</li>
+    <li>Validate dates (convert text to date).</li>
+    <li>Check numerical anomalies (outliers, negatives).</li>
+    <li>Validate business rules (e.g., sales >= 0).</li>
+    <li>Document transformations.</li>
+    <li>Recheck final dataset (row counts, summaries).</li>
+</ol>
+<div class="interview-tip">⭐ MUST KNOW: "How would you clean a messy Excel dataset?" – Use the 10-step framework above.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 8. EXCEL TABLES ==================== -->
+<h1>8. Excel Tables</h1>
+<ul>
+    <li>Convert range to Table: <strong>Ctrl+T</strong></li>
+    <li>Benefits: auto-expand, structured references, calculated columns, easy filtering.</li>
+</ul>
+<div class="formula-box">=SUM(Sales[Revenue])</div>
+<div class="interview-tip">Tables make formulas dynamic and readable – mention this as a best practice.</div>
+<div class="common-mistake">Mixing table and non-table references in the same formula can cause errors.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 9. PIVOT TABLES ==================== -->
+<h1>9. Pivot Tables – ⭐ VERY IMPORTANT</h1>
+<p><strong>What is a Pivot Table?</strong> A tool to summarize, analyze, and present large datasets interactively.</p>
+<ul>
+    <li><strong>Rows</strong> – Categories to group by.</li>
+    <li><strong>Columns</strong> – Cross-tabulation.</li>
+    <li><strong>Values</strong> – Aggregations (Sum, Count, Average).</li>
+    <li><strong>Filters</strong> – Filter entire pivot.</li>
+    <li><strong>Slicers</strong> – Visual filters.</li>
+    <li><strong>Grouping</strong> – Group dates, numbers.</li>
+    <li><strong>Show Values As</strong> – % of total, running total, difference from.</li>
+</ul>
+<div class="business-insight">Use Pivot Tables for: Sales by Region, Sales by Category, Monthly Revenue, Top Customers, Orders by Segment.</div>
+<div class="interview-tip">⭐ MUST KNOW: How to create a Pivot Table, add calculated fields, and use Show Values As.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 10. PIVOT CHARTS & SLICERS ==================== -->
+<h1>10. Pivot Charts &amp; Slicers</h1>
+<ul>
+    <li><strong>Pivot Chart</strong> – Visualize Pivot Table data.</li>
+    <li><strong>Slicer</strong> – Buttons to filter Pivot Tables/Charts.</li>
+    <li><strong>Timeline</strong> – Date filter for Pivot Tables.</li>
+</ul>
+<div class="business-insight">Create an interactive sales dashboard: Pivot Table → Pivot Chart → Slicers for Region, Category, Year.</div>
+<div class="interview-tip">Slicers can be connected to multiple Pivot Tables – great for dashboards.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 11. CONDITIONAL FORMATTING ==================== -->
+<h1>11. Conditional Formatting</h1>
+<ul>
+    <li>Highlight Cell Rules (greater than, less than, between, text contains).</li>
+    <li>Top/Bottom Rules (top 10, bottom 10%).</li>
+    <li>Data Bars, Color Scales, Icon Sets.</li>
+    <li>Custom formulas (e.g., <code>=$C2<0</code> to highlight negative profit).</li>
+</ul>
+<div class="business-insight">Use CF for: low-performing products, high-value customers, negative profit, sales targets, duplicates, missing values.</div>
+<div class="common-mistake">Applying CF to the wrong range or using relative references incorrectly.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 12. POWER QUERY ==================== -->
+<h1>12. Power Query – Entry-Level Relevance</h1>
+<p><strong>What is Power Query?</strong> ETL tool inside Excel for importing, transforming, and loading data.</p>
+<ul>
+    <li>Import data from multiple sources.</li>
+    <li>Remove/rename columns, change data types.</li>
+    <li>Remove duplicates, handle missing values.</li>
+    <li>Split/merge columns, replace values, filter rows.</li>
+    <li><strong>Append</strong> – Stack tables vertically (add rows).</li>
+    <li><strong>Merge</strong> – Join tables horizontally (like VLOOKUP).</li>
+    <li>Group By, Unpivot, Pivot.</li>
+</ul>
+<div class="interview-tip">⭐ MUST KNOW: Merge vs Append – Merge combines columns from different tables; Append adds rows from similar tables.</div>
+<div class="remember-box">Power Query is ideal for repeatable data cleaning – just refresh when new data arrives.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 13. ADVANCED / MODERN FUNCTIONS ==================== -->
+<h1>13. Advanced / Modern Excel Functions</h1>
+<table>
+    <tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+    <tr><td>FILTER</td><td>Filter array</td><td>=FILTER(A2:C10, B2:B10="West")</td></tr>
+    <tr><td>SORT</td><td>Sort array</td><td>=SORT(A2:C10, 2, -1)</td></tr>
+    <tr><td>SORTBY</td><td>Sort by another array</td><td>=SORTBY(A2:A10, B2:B10, -1)</td></tr>
+    <tr><td>UNIQUE</td><td>Unique values</td><td>=UNIQUE(A2:A10)</td></tr>
+    <tr><td>SEQUENCE</td><td>Generate sequence</td><td>=SEQUENCE(5)</td></tr>
+    <tr><td>LET</td><td>Define variables</td><td>=LET(x, A2:A10, SUM(x))</td></tr>
+    <tr><td>TAKE / DROP</td><td>Take/drop rows</td><td>=TAKE(A2:C10, 5)</td></tr>
+    <tr><td>CHOOSECOLS</td><td>Select columns</td><td>=CHOOSECOLS(A2:C10, 1, 3)</td></tr>
+    <tr><td>VSTACK / HSTACK</td><td>Stack arrays</td><td>=VSTACK(A2:B5, D2:E5)</td></tr>
+</table>
+<div class="interview-tip">⭐ MUST KNOW: Dynamic arrays spill automatically. UNIQUE + FILTER + SORT are commonly used together.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 14. STATISTICAL FUNCTIONS ==================== -->
+<h1>14. Statistical / Analytical Functions</h1>
+<table>
+    <tr><th>Function</th><th>Purpose</th></tr>
+    <tr><td>MEDIAN</td><td>Middle value</td></tr>
+    <tr><td>MODE</td><td>Most frequent value</td></tr>
+    <tr><td>STDEV</td><td>Standard deviation</td></tr>
+    <tr><td>VAR</td><td>Variance</td></tr>
+    <tr><td>PERCENTILE</td><td>Percentile rank</td></tr>
+    <tr><td>QUARTILE</td><td>Quartile</td></tr>
+    <tr><td>RANK</td><td>Rank of a value</td></tr>
+    <tr><td>LARGE / SMALL</td><td>Nth largest/smallest</td></tr>
+    <tr><td>CORREL</td><td>Correlation coefficient</td></tr>
+</table>
+<div class="business-insight">Mean vs Median: Median is better when outliers exist. Standard deviation shows spread.</div>
+<div class="interview-tip">Know when to use each – e.g., use MEDIAN for income data (skewed).</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 15. DATA ANALYSIS CONCEPTS ==================== -->
+<h1>15. Data Analysis Concepts Using Excel</h1>
+<p>For each business question: <strong>Business Question → Data Needed → Excel Approach → Formula/Pivot → Interpretation</strong></p>
+
+<h3>Example 1: Which region generates the highest revenue?</h3>
+<ul>
+    <li>Data: Region, Revenue</li>
+    <li>Approach: SUMIF or Pivot Table</li>
+    <li>Formula: <code>=SUMIF(Region,"West",Revenue)</code></li>
+    <li>Interpretation: West contributes 40% of total revenue.</li>
+</ul>
+
+<h3>Example 2: Top 10 customers</h3>
+<ul>
+    <li>Approach: Sort by Sales descending, take top 10.</li>
+    <li>Formula: <code>=LARGE(Sales, 10)</code> or Pivot Table Top 10 filter.</li>
+</ul>
+
+<h3>Example 3: Month-over-Month Growth</h3>
+<ul>
+    <li>Formula: <code>=(ThisMonth - LastMonth)/LastMonth</code></li>
+    <li>Use Pivot Table with Show Values As → % Difference From.</li>
+</ul>
+<div class="business-insight">Always validate results with a second method (e.g., check SUM against Pivot Table total).</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 16. IMPORTANT METRICS ==================== -->
+<h1>16. Important Data Analyst Metrics</h1>
+<table>
+    <tr><th>Metric</th><th>Formula</th><th>Example</th></tr>
+    <tr><td>Revenue</td><td>SUM(Sales)</td><td>=SUM(Sales)</td></tr>
+    <tr><td>Profit</td><td>Revenue - Cost</td><td>=SUM(Profit)</td></tr>
+    <tr><td>Profit Margin</td><td>Profit / Revenue</td><td>=Profit/Revenue</td></tr>
+    <tr><td>Average Order Value</td><td>Revenue / Order Count</td><td>=SUM(Sales)/COUNT(Orders)</td></tr>
+    <tr><td>Repeat Customer Rate</td><td>Repeat Customers / Total Customers</td><td>=COUNTIF(Orders,">1")/COUNTA(Customers)</td></tr>
+    <tr><td>MoM Growth %</td><td>(Current - Previous) / Previous</td><td>=(B2-B1)/B1</td></tr>
+    <tr><td>YoY Growth %</td><td>(This Year - Last Year) / Last Year</td><td>=(C2-C1)/C1</td></tr>
+</table>
+<div class="interview-tip">⭐ MUST KNOW: How to calculate growth % and profit margin in Excel.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 17. CASE STUDIES ==================== -->
+<h1>17. Realistic Data Analyst Case Studies</h1>
+
+<h3>Case Study 1 — E-commerce Sales</h3>
+<p>Dataset: Order_ID, Customer_ID, Order_Date, Region, Category, Product, Quantity, Sales, Discount, Profit</p>
+<p><strong>Business Questions:</strong></p>
+<ul>
+    <li>Which region has the highest sales?</li>
+    <li>Which category is most profitable?</li>
+    <li>What is the monthly revenue trend?</li>
+</ul>
+<p><strong>Excel Approach:</strong> Pivot Table (Region → Sum of Sales), Pivot Chart (Monthly trend), Conditional Formatting for profit.</p>
+
+<h3>Case Study 2 — Customer Analysis</h3>
+<p>Analyze new vs repeat customers, revenue by customer, top customers, contribution %.</p>
+<p><strong>Formula:</strong> <code>=COUNTIF(Customer_ID, A2)>1</code> → Repeat flag.</p>
+
+<h3>Case Study 3 — Retail Performance</h3>
+<p>Analyze Region, Category, Product, Sales, Profit, Discount.</p>
+<p><strong>Insight:</strong> High sales but low profit → high discounts. Use scatter plot or conditional formatting.</p>
+
+<h3>Case Study 4 — HR Analytics</h3>
+<p>Analyze Department, Salary, Experience, Attrition, Performance.</p>
+<p><strong>Formula:</strong> <code>=AVERAGEIF(Department,"Sales",Salary)</code></p>
+
+<h3>Case Study 5 — Operations</h3>
+<p>Analyze Order Date, Delivery Date, Shipping Mode, Delivery Time, Region.</p>
+<p><strong>Formula:</strong> Delivery Time = <code>=DeliveryDate - OrderDate</code>. Use NETWORKDAYS for working days.</p>
+
+<div class="interview-tip">Always explain the business reasoning, not just the formula.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 18. INTERVIEW QUESTIONS ==================== -->
+<h1>18. Excel Interview Questions Master Bank</h1>
+<p><em>(Representative sample – expand as needed)</em></p>
+
+<h3>Basic Questions (Sample 5)</h3>
+<ol>
+    <li>What is the difference between a workbook and a worksheet?</li>
+    <li>How do you freeze panes?</li>
+    <li>What is the shortcut to insert a new sheet?</li>
+    <li>How do you remove duplicates?</li>
+    <li>What is conditional formatting?</li>
+</ol>
+
+<h3>Intermediate Questions (Sample 5)</h3>
+<ol>
+    <li>Explain VLOOKUP vs XLOOKUP.</li>
+    <li>What is the difference between SUMIF and SUMIFS?</li>
+    <li>How does INDEX-MATCH work?</li>
+    <li>What are dynamic arrays?</li>
+    <li>How do you handle errors in Excel?</li>
+</ol>
+
+<h3>Scenario-Based Questions (Sample 5)</h3>
+<ol>
+    <li>You have a dataset with duplicate customer IDs. How do you identify and handle them?</li>
+    <li>Sales dropped by 20% last month. How would you investigate using Excel?</li>
+    <li>How would you create a dashboard for a retail store?</li>
+    <li>You need to combine data from 12 monthly sheets. What do you do?</li>
+    <li>How do you find the top 10 customers by revenue?</li>
+</ol>
+
+<h3>Practical Excel Questions (Sample 5)</h3>
+<ol>
+    <li>Write a formula to sum sales for West region.</li>
+    <li>Write a formula to count orders with sales > 1000.</li>
+    <li>Write a formula to extract the year from a date.</li>
+    <li>Write a formula to find the average profit for Tech category.</li>
+    <li>Write a formula to check if a customer is repeat.</li>
+</ol>
+
+<h3>Business Questions (Sample 5)</h3>
+<ol>
+    <li>Which region has the highest profit margin?</li>
+    <li>What is the month-over-month growth?</li>
+    <li>Who are the top 5 customers by revenue?</li>
+    <li>What percentage of revenue comes from repeat customers?</li>
+    <li>Which products have high sales but low profitability?</li>
+</ol>
+
+<h3>Tricky Questions (Sample 5)</h3>
+<ol>
+    <li>Why does VLOOKUP return #N/A even when the value exists?</li>
+    <li>What happens if you use approximate match in VLOOKUP incorrectly?</li>
+    <li>How do you handle blank cells in calculations?</li>
+    <li>Why is MEDIAN sometimes better than AVERAGE?</li>
+    <li>How do you prevent formula errors when dragging?</li>
+</ol>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 19. INTERVIEW ANSWERING FRAMEWORK ==================== -->
+<h1>19. Interview Answering Framework</h1>
+
+<h3>Example: "How would you clean a messy Excel dataset?"</h3>
+<ol>
+    <li>Understand the dataset</li>
+    <li>Check data types</li>
+    <li>Check missing values</li>
+    <li>Check duplicates</li>
+    <li>Standardize text</li>
+    <li>Validate dates</li>
+    <li>Check numerical anomalies</li>
+    <li>Validate business rules</li>
+    <li>Document transformations</li>
+    <li>Recheck the final dataset</li>
+</ol>
+<div class="interview-tip">Use this structured approach for any data cleaning question – it shows professionalism.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 20. COMMON MISTAKES ==================== -->
+<h1>20. Excel Mistakes That Can Hurt a Data Analyst Interview</h1>
+<ul>
+    <li>Using approximate match accidentally in VLOOKUP.</li>
+    <li>Forgetting absolute references ($) when dragging formulas.</li>
+    <li>Using wrong aggregation (SUM vs COUNT).</li>
+    <li>Ignoring duplicates.</li>
+    <li>Ignoring missing values.</li>
+    <li>Incorrect date handling (text vs date).</li>
+    <li>Hardcoding values instead of using cell references.</li>
+    <li>Not validating results.</li>
+    <li>Using formulas without understanding the business question.</li>
+    <li>Creating misleading charts (e.g., truncated y-axis).</li>
+    <li>Not checking data types.</li>
+    <li>Using too many nested IFs instead of IFS or lookup.</li>
+    <li>Not documenting assumptions.</li>
+</ul>
+<div class="common-mistake">Any of these can cost you the interview – double-check your work.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 21. DASHBOARD BASICS ==================== -->
+<h1>21. Excel Dashboard Basics</h1>
+<ul>
+    <li><strong>KPI Cards</strong> – Key metrics at top.</li>
+    <li><strong>Charts</strong> – Visualize trends, comparisons, composition.</li>
+    <li><strong>Pivot Tables &amp; Slicers</strong> – Interactive filtering.</li>
+    <li><strong>Layout</strong> – Clean, consistent, hierarchy.</li>
+    <li><strong>Chart Selection</strong>: Trend → Line; Comparison → Bar; Distribution → Histogram; Composition → Pie/Stacked; Relationship → Scatter.</li>
+</ul>
+<div class="interview-tip">⭐ MUST KNOW: Which chart to use for which purpose. Avoid chart clutter – keep it simple.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 22. EXCEL VS SQL VS POWER BI ==================== -->
+<h1>22. Excel vs SQL vs Power BI</h1>
+<table>
+    <tr><th>Tool</th><th>Best For</th><th>When to Use</th></tr>
+    <tr><td>Excel</td><td>Quick analysis, small datasets, ad-hoc reports</td><td>Data < 1M rows, interactive what-if</td></tr>
+    <tr><td>SQL</td><td>Querying large databases, joining tables</td><td>Data in relational databases</td></tr>
+    <tr><td>Power BI</td><td>Interactive dashboards, large datasets, sharing</td><td>Enterprise reporting, automation</td></tr>
+</table>
+<div class="business-insight">Typical workflow: SQL for extraction → Excel for quick analysis → Power BI for dashboards.</div>
+<div class="interview-tip">Show you understand how they work together, not just what they are.</div>
+
+<div class="section-sep"></div>
+
+<!-- ==================== 23. LAST-DAY REVISION SHEET ==================== -->
+<h1>23. Excel Interview — Last Day Revision Sheet</h1>
+
+<h3>⭐ Most Important Formulas</h3>
+<ul>
+    <li>=SUMIFS(Sales, Region, "West", Category, "Tech")</li>
+    <li>=XLOOKUP(A2, IDs, Names, "Not Found")</li>
+    <li>=INDEX(Return, MATCH(Lookup, Range, 0))</li>
+    <li>=IFERROR(VLOOKUP(...), "Not Found")</li>
+    <li>=TEXTJOIN(", ", TRUE, A1:A10)</li>
+    <li>=EOMONTH(A1, 0)</li>
+    <li>=DATEDIF(A1, B1, "M")</li>
+    <li>=UNIQUE(FILTER(A2:A100, B2:B100="West"))</li>
+</ul>
+
+<h3>⭐ Lookup Comparison</h3>
+<table>
+    <tr><th></th><th>VLOOKUP</th><th>XLOOKUP</th><th>INDEX-MATCH</th></tr>
+    <tr><td>Look left</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Default exact</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td>If not found</td><td>#N/A</td><td>Custom</td><td>#N/A</td></tr>
+</table>
+
+<h3>⭐ Pivot Table Concepts</h3>
+<ul>
+    <li>Rows, Columns, Values, Filters</li>
+    <li>Slicers, Timelines</li>
+    <li>Show Values As: % of Total, Running Total, Difference From</li>
+    <li>Grouping dates and numbers</li>
+</ul>
+
+<h3>⭐ Power Query Concepts</h3>
+<ul>
+    <li>ETL: Extract → Transform → Load</li>
+    <li>Merge vs Append</li>
+    <li>Remove duplicates, change types, split columns</li>
+    <li>Refresh data</li>
+</ul>
+
+<h3>⭐ Data Cleaning Checklist</h3>
+<ol>
+    <li>Check data types</li>
+    <li>Handle missing values</li>
+    <li>Remove duplicates</li>
+    <li>Standardize text (TRIM, PROPER)</li>
+    <li>Validate dates</li>
+    <li>Check outliers</li>
+    <li>Validate business rules</li>
+    <li>Document</li>
+</ol>
+
+<h3>⭐ Important Keyboard Shortcuts</h3>
+<ul>
+    <li>Ctrl + T – Create Table</li>
+    <li>Ctrl + Shift + L – Filter</li>
+    <li>Alt + = – AutoSum</li>
+    <li>F4 – Toggle absolute reference</li>
+    <li>Ctrl + Z – Undo</li>
+    <li>Ctrl + Arrow – Jump to edge</li>
+</ul>
+
+<h3>⭐ Common Interview Questions</h3>
+<ul>
+    <li>VLOOKUP vs XLOOKUP</li>
+    <li>SUMIF vs SUMIFS</li>
+    <li>INDEX-MATCH</li>
+    <li>Pivot Table</li>
+    <li>Power Query Merge vs Append</li>
+    <li>Relative vs Absolute reference</li>
+    <li>IFERROR</li>
+    <li>Data Cleaning steps</li>
+    <li>Handling missing values</li>
+    <li>Top N customers</li>
+    <li>Growth % calculation</li>
+</ul>
+
+<h3>⭐ Common Mistakes</h3>
+<ul>
+    <li>Forgetting absolute references</li>
+    <li>Using approximate match accidentally</li>
+    <li>Ignoring duplicates</li>
+    <li>Not validating results</li>
+    <li>Misleading charts</li>
+</ul>
+
+<h3>⭐ Important Business Metrics</h3>
+<ul>
+    <li>Revenue, Profit, Profit Margin</li>
+    <li>Average Order Value</li>
+    <li>Repeat Customer Rate</li>
+    <li>MoM, YoY Growth %</li>
+    <li>Category Contribution %</li>
+</ul>
+
+<h3>⭐ Important Terminology</h3>
+<ul>
+    <li>ETL, Pivot, Slicer, Dynamic Array, Structured Reference</li>
+    <li>Lookup, Aggregation, Conditional Formatting</li>
+</ul>
+
+<div class="section-sep"></div>
+
+<p style="text-align:center; color:#64748b; margin-top:60px; font-size:0.9rem;">
+    Excel Master Notes – Entry-Level Data Analyst Interview Handbook<br>
+    ⭐ MUST KNOW topics are marked with a star. Review them multiple times.<br>
+    Good luck with your interview!
+</p>
+
+</body>
+</html>
